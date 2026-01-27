@@ -1,0 +1,20 @@
+# Logs
+*.log
+benchmarl_run/*.log
+cleanrl_run/*.log
+
+# WandB
+wandb/
+
+# Python caching
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Models
+models/
+*.pt
+*.pth
+
+# OS
+.DS_Store

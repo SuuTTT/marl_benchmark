@@ -1,0 +1,3 @@
+/venv/main/lib/python3.12/site-packages/benchmarl/experiment/experiment.py:313: UserWarning: max_n_frames and max_n_iters have both been set. The experiment will terminate after 10 iterations (60000 frames).
+  warnings.warn(
+  0%|          | 0/10 [00:00<?, ?it/s]mean return = -0.7579770684242249:  10%|█         | 1/10 [00:23<03:31, 23.47s/it]mean return = -0.51387619972229:  20%|██        | 2/10 [00:47<03:10, 23.83s/it]  mean return = -0.3598320782184601:  30%|███       | 3/10 [01:11<02:48, 24.05s/it]

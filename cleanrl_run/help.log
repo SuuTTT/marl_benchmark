@@ -1,0 +1,59 @@
+/venv/main/lib/python3.12/site-packages/tyro/_parsers.py:353: UserWarning: The field `wandb-entity` is annotated with type `<class 'str'>`, but the default value `None` has type `<class 'NoneType'>`. We'll try to handle this gracefully, but it may cause unexpected behavior.
+  warnings.warn(message)
+/venv/main/lib/python3.12/site-packages/tyro/_parsers.py:353: UserWarning: The field `target-kl` is annotated with type `<class 'float'>`, but the default value `None` has type `<class 'NoneType'>`. We'll try to handle this gracefully, but it may cause unexpected behavior.
+  warnings.warn(message)
+usage: cleanrl_run/ppo.py [-h] [OPTIONS]
+
+╭─ options ────────────────────────────────────────────────────────────────────╮
+│ -h, --help            show this help message and exit                        │
+│ --exp-name STR        the name of this experiment (default: ppo)             │
+│ --seed INT            seed of the experiment (default: 1)                    │
+│ --torch-deterministic, --no-torch-deterministic                              │
+│                       if toggled, `torch.backends.cudnn.deterministic=False` │
+│                       (default: True)                                        │
+│ --cuda, --no-cuda     if toggled, cuda will be enabled by default (default:  │
+│                       True)                                                  │
+│ --track, --no-track   if toggled, this experiment will be tracked with       │
+│                       Weights and Biases (default: False)                    │
+│ --wandb-project-name STR                                                     │
+│                       the wandb's project name (default: cleanRL)            │
+│ --wandb-entity {None}|STR                                                    │
+│                       the entity (team) of wandb's project (default: None)   │
+│ --capture-video, --no-capture-video                                          │
+│                       whether to capture videos of the agent performances    │
+│                       (check out `videos` folder) (default: False)           │
+│ --env-id STR          the id of the environment (default: CartPole-v1)       │
+│ --total-timesteps INT                                                        │
+│                       total timesteps of the experiments (default: 500000)   │
+│ --learning-rate FLOAT                                                        │
+│                       the learning rate of the optimizer (default: 0.00025)  │
+│ --num-envs INT        the number of parallel game environments (default: 4)  │
+│ --num-steps INT       the number of steps to run in each environment per     │
+│                       policy rollout (default: 128)                          │
+│ --anneal-lr, --no-anneal-lr                                                  │
+│                       Toggle learning rate annealing for policy and value    │
+│                       networks (default: True)                               │
+│ --gamma FLOAT         the discount factor gamma (default: 0.99)              │
+│ --gae-lambda FLOAT    the lambda for the general advantage estimation        │
+│                       (default: 0.95)                                        │
+│ --num-minibatches INT                                                        │
+│                       the number of mini-batches (default: 4)                │
+│ --update-epochs INT   the K epochs to update the policy (default: 4)         │
+│ --norm-adv, --no-norm-adv                                                    │
+│                       Toggles advantages normalization (default: True)       │
+│ --clip-coef FLOAT     the surrogate clipping coefficient (default: 0.2)      │
+│ --clip-vloss, --no-clip-vloss                                                │
+│                       Toggles whether or not to use a clipped loss for the   │
+│                       value function, as per the paper. (default: True)      │
+│ --ent-coef FLOAT      coefficient of the entropy (default: 0.01)             │
+│ --vf-coef FLOAT       coefficient of the value function (default: 0.5)       │
+│ --max-grad-norm FLOAT                                                        │
+│                       the maximum norm for the gradient clipping (default:   │
+│                       0.5)                                                   │
+│ --target-kl {None}|FLOAT                                                     │
+│                       the target KL divergence threshold (default: None)     │
+│ --batch-size INT      the batch size (computed in runtime) (default: 0)      │
+│ --minibatch-size INT  the mini-batch size (computed in runtime) (default: 0) │
+│ --num-iterations INT  the number of iterations (computed in runtime)         │
+│                       (default: 0)                                           │
+╰──────────────────────────────────────────────────────────────────────────────╯

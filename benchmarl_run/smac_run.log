@@ -1,0 +1,53 @@
+/venv/main/lib/python3.12/site-packages/benchmarl/environments/common.py:41: UserWarning: TaskConfig python dataclass not found, task is being loaded without type checks
+  warnings.warn(
+Traceback (most recent call last):
+  File "/workspace/benchmarl_run/smac_train.py", line 50, in <module>
+    experiment = Experiment(
+                 ^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/benchmarl/experiment/experiment.py", line 371, in __init__
+    self._setup()
+  File "/venv/main/lib/python3.12/site-packages/benchmarl/experiment/experiment.py", line 392, in _setup
+    self._setup_task()
+  File "/venv/main/lib/python3.12/site-packages/benchmarl/experiment/experiment.py", line 448, in _setup_task
+    test_env = self.task.get_env_fun(
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/benchmarl/environments/smacv2/common.py", line 28, in <lambda>
+    return lambda: SMACv2Env(
+                   ^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/torchrl/envs/common.py", line 263, in __call__
+    instance: EnvBase = super().__call__(*args, **kwargs)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/torchrl/envs/libs/smacv2.py", line 620, in __init__
+    super().__init__(**kwargs)
+  File "/venv/main/lib/python3.12/site-packages/torchrl/envs/libs/smacv2.py", line 191, in __init__
+    super().__init__(**kwargs)
+  File "/venv/main/lib/python3.12/site-packages/torchrl/envs/common.py", line 3944, in __init__
+    self._init_env()  # runs all the steps to have a ready-to-use env
+    ^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/torchrl/envs/libs/smacv2.py", line 235, in _init_env
+    self._env.reset()
+  File "/venv/main/lib/python3.12/site-packages/smacv2/env/starcraft2/wrapper.py", line 34, in reset
+    return self.env.reset(reset_config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/smacv2/env/starcraft2/starcraft2.py", line 527, in reset
+    self._launch()
+  File "/venv/main/lib/python3.12/site-packages/smacv2/env/starcraft2/starcraft2.py", line 435, in _launch
+    self._run_config = run_configs.get(version=self.game_version)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/pysc2/run_configs/__init__.py", line 36, in get
+    return max(configs.values(), key=lambda c: c.priority())(version=version)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/pysc2/run_configs/platforms.py", line 175, in __init__
+    super(Linux, self).__init__(base_dir, "SC2_x64", version=version, env=env)
+  File "/venv/main/lib/python3.12/site-packages/pysc2/run_configs/platforms.py", line 57, in __init__
+    super(LocalBase, self).__init__(
+  File "/venv/main/lib/python3.12/site-packages/pysc2/run_configs/lib.py", line 128, in __init__
+    self.version = self._get_version(version)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/pysc2/run_configs/lib.py", line 236, in _get_version
+    versions = self.get_versions(containing=game_version)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/pysc2/run_configs/platforms.py", line 90, in get_versions
+    for v in os.listdir(versions_dir)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/StarCraftII/Versions'

@@ -1,0 +1,49 @@
+🚀 Loading HuggingFaceTB/SmolLM2-135M-Instruct on cuda...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+`torch_dtype` is deprecated! Use `dtype` instead!
+Cancellation requested; stopping current tasks.
+Traceback (most recent call last):
+  File "/venv/main/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 588, in xet_get
+    download_files(
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/perftest/repe_pipeline.py", line 100, in <module>
+    pipeline = FrozenSteeringPipeline("HuggingFaceTB/SmolLM2-135M-Instruct")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/perftest/repe_pipeline.py", line 11, in __init__
+    self.model = AutoModelForCausalLM.from_pretrained(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 372, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4038, in from_pretrained
+    checkpoint_files, sharded_metadata = _get_resolved_checkpoint_files(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/transformers/modeling_utils.py", line 641, in _get_resolved_checkpoint_files
+    resolved_archive_file = cached_file(pretrained_model_name_or_path, filename, **cached_file_kwargs)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/transformers/utils/hub.py", line 276, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/transformers/utils/hub.py", line 419, in cached_files
+    hf_hub_download(
+  File "/venv/main/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1024, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1240, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "/venv/main/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1864, in _download_to_tmp_and_move
+    xet_get(
+  File "/venv/main/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 583, in xet_get
+    with progress_cm as progress:
+         ^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/tqdm/std.py", line 1138, in __exit__
+    def __exit__(self, exc_type, exc_value, traceback):
+
+KeyboardInterrupt
