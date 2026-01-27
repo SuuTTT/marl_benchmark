@@ -30,23 +30,24 @@
 
 ## Device Utilization
 - **Current Status**: Running on **CPU**.
-- **Reason**: The `sampling_device` and `train_device` were hardcoded to `"cpu"` in [benchmarl_run/full_train.py](benchmarl_run/full_train.py) and [benchmarl_run/speed_test.py](benchmarl_run/speed_test.py) to ensure maximum compatibility during initial environment setup and debugging of MARL dependencies.
+- **Reason**: The `sampling_device` and `train_device` were hardcoded to `"cpu"` in [benchmarl_run/full_train.py](benchmarl_run/full_train.py) to ensure maximum compatibility.
+- **Environment**: Using a local virtual environment at `/workspace/marl_benchmark/benchmarl_run/venv` to avoid dependency conflicts.
 - **Hardware Available**: Initial checks confirm an **NVIDIA GeForce RTX 5070 Ti** is available (`CUDA Available: True`).
-- **Recommendation**: For actual performance benchmarking across instances, the scripts should be updated to use `cuda:0`.
 
 ## Launch Instructions
 ### Environment Requirements
-- **Python**: 3.10+
+- **Python**: 3.12
+- **Virtual Environment**: `/workspace/marl_benchmark/benchmarl_run/venv`
 - **Core ML**: `torch`, `torchvision`, `torchrl`
 - **MARL Frameworks**: `benchmarl`, `vmas`
-- **Logging**: `wandb` (logged in via `wandb login` or environment variables)
-- **Headless Setup**: If running on a server without a GPU/Display, ensure `experiment_config.evaluation = False` or install `python3-opengl` and use `xvfb-run`.
+- **Logging**: `wandb` (logged in as `sudingli21`)
 
 ### Running the Benchmark
-To run the full 10M frame training benchmark with WandB logging:
+To run the full 10M frame training benchmark with WandB logging in the background:
 ```bash
+source /workspace/marl_benchmark/benchmarl_run/venv/bin/activate
 export WANDB_MODE=online
-python3 -u benchmarl_run/full_train.py
+python3 -u /workspace/marl_benchmark/benchmarl_run/full_train.py > /workspace/marl_benchmark/benchmarl_run/full_train_execution_v2.log 2>&1 &
 ```
 
 ## Changelog
