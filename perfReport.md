@@ -78,7 +78,7 @@
 ---
 
 # Instance Performance: RTX 5080
-U
+US machine very slow
 ## Instance Information
 - **GPU**: 1x NVIDIA GeForce RTX 5080 (15.9 GB VRAM, 53.2 TFLOPS)
 - **CPU**: AMD EPYC 7K62 48-Core Processor
