@@ -25,7 +25,8 @@ class GPUStressBenchmark:
     def __init__(self, output_file=None):
         if output_file is None:
             ts = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            self.output_file = f"/workspace/marl_benchmark/new_test/rtx_5090_{ts}.json"
+            device_name = torch.cuda.get_device_name(0).replace(" ", "_").lower() if torch.cuda.is_available() else "cpu"
+            self.output_file = f"/workspace/marl_benchmark/new_test/{device_name}_{ts}.json"
         else:
             self.output_file = output_file
             

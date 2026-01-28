@@ -1,3 +1,39 @@
+# Performance Report: RTX 3060 Instance (Current - Machine ID: 27930)
+
+## Instance Specifications
+- **GPU**: NVIDIA GeForce RTX 3060 (12GB VRAM)
+- **CPU**: Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz
+- **PCIe**: Gen 3.0 (Measured H2D: 6.88 GB/s, D2H: 1.21 GB/s)
+- **Compute Power**: 9.09 TFLOPS (FP32), 24.86 TFLOPS (BF16)
+
+## Multi-Agent RL Throughput (VMAS Navigation)
+- **Peak Vectorization (8192 envs)**: **44,510 SPS** (using `new_test/full_benchmark.py`)
+
+## LLM / Transformer Performance
+- **Transformer Training Speed**: **FAILED** (OOM - 12GB insufficient for 4096 dim)
+- **VRAM Filling**: Successfully allocated **0 GB** (Stress test triggered OOM)
+
+## Low-Level GPU Benchmarks
+- **FP32 Matrix Multiplication**: 0.1167 seconds/op
+- **BF16 Matrix Multiplication**: 0.0422 seconds/op
+- **Host-to-GPU Bandwidth**: 7.08 GB/s
+
+## RL Run Performance
+
+### 1. Simple Actor-Critic (Single-Agent Smoke Test)
+- **Environment**: `CartPole-v1`
+- **Algorithm**: Simple Actor-Critic
+- **Device**: CUDA
+- **Training Speed**: **261 SPS** (Steps Per Second)
+
+### 2. BenchMARL MAPPO (Multi-Agent Benchmark)
+- **Environment**: VMAS `Navigation` (Multi-Robot)
+- **Algorithm**: MAPPO (On-policy)
+- **Device**: CUDA
+- **Status**: Completed 5 iterations successfully.
+
+---
+
 # Performance Report: RTX 5090 RL Instance (Poland - Machine ID: 11716)
 
 ## Instance Specifications
