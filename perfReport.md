@@ -74,3 +74,39 @@
 ## Analysis
 - The bandwidth regression is the dominant issue and aligns with the observed failure case under BenchMARL. This suggests a data-transfer bottleneck rather than a pure compute limitation.
 - The FP32/BF16 slowdowns are relatively modest and would not alone explain the failure; the PCIe 4.0 x8 path and the measured bandwidth drop are the primary suspects.
+
+---
+
+# Instance Performance: RTX 5080
+U
+## Instance Information
+- **GPU**: 1x NVIDIA GeForce RTX 5080 (15.9 GB VRAM, 53.2 TFLOPS)
+- **CPU**: AMD EPYC 7K62 48-Core Processor
+- **RAM**: 48.3 GB
+- **Bandwidth**: 6.93 GB/s (Host-to-GPU)
+- **Instance ID**: 30660853 | Host: 344939 | Machine ID: 51505
+
+## Low-Level GPU Benchmarks
+- **FP32 Matrix Multiplication**: 0.0292 seconds/op
+- **BF16 Matrix Multiplication**: 0.0108 seconds/op
+- **Host-to-GPU Bandwidth**: 6.93 GB/s
+
+## RL Run Performance (RTX 5080)
+
+### 1. Quick Dev Pipeline (Single-Agent Smoke Test)
+- **Environment**: `CartPole-v1`
+- **Algorithm**: PPO-like (smoke test)
+- **Device**: CUDA
+- **Training Speed**: **225 SPS**
+
+### 2. BenchMARL MAPPO (Multi-Agent Benchmark)
+- **Environment**: VMAS `Navigation` (Multi-Robot)
+- **Algorithm**: MAPPO (On-policy)
+- **Device**: CUDA
+- **Iteration Time**: ~14.25s / 6000 frames
+- **Training Speed**: **~421 SPS**
+
+## Observations
+- **Bandwidth Bottleneck**: The measured bandwidth (6.93 GB/s) is lower than expected for a PCIe 4.0 x16 slot (which should be ~26+ GB/s), suggesting this instance might be running on a PCIe 4.0 x4 or x8 path, or facing other bus contention.
+- **SPS vs 5090**: Compared to the RTX 5090 (1,012 SPS), the 5080 achieves about 42% of the throughput. This aligns with the lower bandwidth (6.93 vs 14.59 GB/s).
+- **Compute Power**: The FP32/BF16 results are solid, indicating that the GPU itself is healthy, but the RL pipeline's performance is heavily tied to the available PCIe bandwidth.
