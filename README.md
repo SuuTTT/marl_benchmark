@@ -2,6 +2,22 @@
 
 ## Overview
 This repository consolidates benchmarking tools and baselines for Single-Agent and Multi-Agent Reinforcement Learning.
+This repo is used to test each instance's performance.
+
+## Setup
+Before running experiments, set up your environment if they are not set:
+
+```bash
+git config --global user.name "sudingli"
+git config --global user.email "suuttt@icloud.com"
+wandb login
+```
+
+## Workflow
+1. Run performance benchmarks:
+   - `python perftest/bench.py`
+   - `python benchmarl_run/mappo_cuda_train.py`
+2. Analyze the results and append the output to [perfReport.md](perfReport.md).
 
 ## Contents
 - **[cleanrl_run/](cleanrl_run/)**: CleanRL baselines (PPO) and execution logs.
