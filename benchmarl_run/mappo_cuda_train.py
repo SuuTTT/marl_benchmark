@@ -5,6 +5,17 @@ from benchmarl.models import MlpConfig
 import os
 import torch
 
+# Monkeypatch ClipPPOLoss to handle the critic_coef -> critic_coeff rename in torchrl v0.11
+import torchrl.objectives.ppo as ppo
+original_init = ppo.ClipPPOLoss.__init__
+def patched_init(self, *args, **kwargs):
+    if "critic_coef" in kwargs:
+        kwargs["critic_coeff"] = kwargs.pop("critic_coef")
+    if "entropy_coef" in kwargs:
+        kwargs["entropy_coeff"] = kwargs.pop("entropy_coef")
+    return original_init(self, *args, **kwargs)
+ppo.ClipPPOLoss.__init__ = patched_init
+
 if __name__ == "__main__":
     # Force wandb to sync online
     os.environ["WANDB_MODE"] = "online"
@@ -23,8 +34,10 @@ if __name__ == "__main__":
     # MAPPO is on-policy
     experiment_config.on_policy = True
     
-    # Standardize 1e7 training frames
-    experiment_config.max_n_frames = 10_000_000
+    # Quick speed test: only 5 iterations
+    # Set to 10_000_000 frames for full training
+    experiment_config.max_n_iters = 5
+    experiment_config.stop_after_n_frames = None
     
     # Configure WandB Logging
     experiment_config.loggers = ["wandb", "csv"]

@@ -1,4 +1,40 @@
-# Performance Report: RTX 5090 RL Instance
+# Performance Report: RTX 5090 RL Instance (Poland - Machine ID: 11716)
+
+## Instance Specifications
+- **GPU**: NVIDIA GeForce RTX 5090 (32GB VRAM, 108.1 TFLOPS)
+- **CPU**: AMD Ryzen 7 7700X 8-Core Processor
+- **RAM**: 47.8 GB
+- **Motherboard**: X870E Taichi (PCIe 5.0 @ 27.5 GB/s)
+- **Disk**: KINGSTON SFYRD2000G (5830 MB/s)
+- **Instance ID**: 30664753
+
+## Low-Level GPU Benchmarks
+- **FP32 Matrix Multiplication**: 0.0177 seconds/op
+- **BF16 Matrix Multiplication**: 0.0055 seconds/op
+- **Host-to-GPU Bandwidth**: 17.88 GB/s
+
+## RL Run Performance
+
+### 1. Simple Actor-Critic (Single-Agent Smoke Test)
+- **Environment**: `CartPole-v1`
+- **Algorithm**: Simple Actor-Critic
+- **Device**: CUDA
+- **Training Speed**: **943 SPS** (Steps Per Second)
+
+### 2. BenchMARL MAPPO (Multi-Agent Benchmark)
+- **Environment**: VMAS `Navigation` (Multi-Robot)
+- **Algorithm**: MAPPO (On-policy)
+- **Device**: CUDA
+- **Iteration Time**: ~4.84s / 6000 frames
+- **Training Speed**: **~1,240 SPS**
+
+## Observations
+- **Top-Tier Performance**: The Poland 5090 instance (Ryzen 7 7700X) outperforms the Korea instance, likely due to higher PCIe bandwidth (17.88 vs 14.59 GB/s).
+- **SPS Scaling**: Achieving ~1,240 SPS in a multi-agent environment (VMAS) is the highest recorded in this repo.
+
+---
+
+# Performance Report: RTX 5090 RL Instance (Korea - Previous Record)
 
 ## Instance Specifications
 - **GPU**: NVIDIA GeForce RTX 5090 (32GB VRAM, 108.1 TFLOPS)
@@ -26,12 +62,9 @@
 - **Iteration Time**: 5.93s / 6000 frames
 - **Training Speed**: **~1,012 SPS**
 
-## Observations
-- **Architecture Efficiency**: The RTX 5090 demonstrates high matrix math throughput in BF16, which is beneficial for modern RL architectures.
-- **SPS Comparison**: The multi-agent VMAS navigation benchmark achieves higher overall throughput (1,012 SPS) compared to the simple single-agent CartPole script (813 SPS) on this instance, likely due to better vectorization in the VMAS/TorchRL stack despite the complexity of MAPPO.
-- **PCIe Bandwidth**: The measured host-to-GPU bandwidth (~14.6 GB/s) is solid, ensuring that data movement doesn't severely bottleneck the on-policy updates.
-
 ---
+
+# Previous Logs and Reports
 
 # Instance Performance Appendix: RTX 5060 Ti (Machine ID: 39053 VN)
 

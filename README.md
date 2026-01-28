@@ -14,9 +14,10 @@ wandb login
 ```
 
 ## Workflow
-1. Run performance benchmarks:
-   - `python perftest/bench.py`
-   - `python benchmarl_run/mappo_cuda_train.py`
+1. **Quick Initial Benchmark** (5-10 mins):
+   - `python perftest/bench.py` (Low-level GPU/Bandwidth)
+   - `python perftest/quick_dev_pipline.py` (Single-agent SPS)
+   - `python benchmarl_run/mappo_cuda_train.py` (Multi-agent SPS - iterations set to 5 for speed)
 2. Analyze the results and append the output to [perfReport.md](perfReport.md).
 
 ## Contents

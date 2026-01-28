@@ -26,6 +26,7 @@
 - BenchMARL is highly modular and depends on `torchrl` and `vmas`.
 - When running on headers or environments without displays, disable evaluation/rendering to avoid OpenGL errors.
 - Use `WANDB_MODE=online` and check the experiment progress bar to ensure data is being pushed.
+- **TorchRL Compatibility**: `torchrl v0.11+` renamed `critic_coef` and `entropy_coef` to `critic_coeff` and `entropy_coeff`. `mappo_cuda_train.py` handles this with a monkeypatch to avoid manual config changes in BenchMARL YAMLs.
 - SMACv2 requires a system-level StarCraft II installation; `pip install smacv2` only installs the Python wrapper.
 
 ## Device Utilization
@@ -48,7 +49,21 @@ The observation that GPU execution is slower than CPU for this specific BenchMAR
 - **Virtual Environment**: `/workspace/marl_benchmark/benchmarl_run/venv`
 - **Logging**: `wandb` (logged in as `sudingli21`)
 
-### Running the Benchmarks
+### Running Quick Benchmarks (New Instances)
+**1. Low-Level & Single-Agent:**
+```bash
+python3 perftest/bench.py
+python3 perftest/quick_dev_pipline.py
+```
+
+**2. Multi-Agent GPU (MAPPO):**
+```bash
+export WANDB_MODE=online
+# Running with max_n_iters=5 in script for quick SPS measurement
+python3 benchmarl_run/mappo_cuda_train.py
+```
+
+### Full Training Runs
 **CPU (IQL):**
 ```bash
 source /workspace/marl_benchmark/benchmarl_run/venv/bin/activate
@@ -60,6 +75,7 @@ python3 -u /workspace/marl_benchmark/benchmarl_run/full_train.py > /workspace/ma
 ```bash
 source /workspace/marl_benchmark/benchmarl_run/venv/bin/activate
 export WANDB_MODE=online
+# Ensure max_n_frames is set back to 10M for full runs
 python3 -u /workspace/marl_benchmark/benchmarl_run/mappo_cuda_train.py > /workspace/marl_benchmark/benchmarl_run/mappo_cuda_execution.log 2>&1 &
 ```
 
