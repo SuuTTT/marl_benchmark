@@ -4,6 +4,9 @@
 benchmarl_run/*.log
 cleanrl_run/*.log
 outputs/
+runs/
+csv/
+mappo_navigation_*/
 
 # Virtual environments
 venv/
