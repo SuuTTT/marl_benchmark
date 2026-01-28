@@ -1,0 +1,22 @@
+{
+    "timestamp": "2026-01-28 13:07:14.592810",
+    "device_name": "NVIDIA GeForce RTX 5090",
+    "system": {},
+    "low_level": {
+        "fp32_tflops": 58.30742722362633,
+        "bf16_tflops": 182.8000121463018,
+        "pcie_h2d_gbps": 17.196395332628143,
+        "pcie_d2h_gbps": 2.6392981511149816
+    },
+    "rl_stress": {
+        "sps": 175598.06502950785,
+        "gpu_util": 32,
+        "gpu_mem": 860
+    },
+    "llm_stress": {
+        "tokens_per_sec": 10400.039496236534,
+        "gpu_util": 100,
+        "gpu_mem": 13868,
+        "vram_fill_test": "25 GB"
+    }
+}

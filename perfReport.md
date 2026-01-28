@@ -1,12 +1,18 @@
 # Performance Report: RTX 5090 RL Instance (Poland - Machine ID: 11716)
 
 ## Instance Specifications
-- **GPU**: NVIDIA GeForce RTX 5090 (32GB VRAM, 108.1 TFLOPS)
+- **GPU**: NVIDIA GeForce RTX 5090 (32GB VRAM)
 - **CPU**: AMD Ryzen 7 7700X 8-Core Processor
-- **RAM**: 47.8 GB
-- **Motherboard**: X870E Taichi (PCIe 5.0 @ 27.5 GB/s)
-- **Disk**: KINGSTON SFYRD2000G (5830 MB/s)
-- **Instance ID**: 30664753
+- **PCIe**: Gen 5.0 (Measured H2D: 17.20 GB/s, D2H: 2.64 GB/s)
+- **Compute Power**: 58.3 TFLOPS (FP32), 182.8 TFLOPS (BF16)
+
+## Multi-Agent RL Throughput (VMAS Navigation)
+- **Standard Run (512 envs)**: **~1,240 SPS**
+- **Peak Vectorization (8192 envs)**: **175,598 SPS** (using `new_test/full_benchmark.py`)
+
+## LLM / Transformer Performance
+- **Transformer Training Speed**: **10,400 tokens/s** (8 layers, 4096 dim, batch 8, seq 1024) - *Pushing 100% GPU Util*
+- **VRAM Filling**: Successfully allocated **25 GB** in stress test.
 
 ## Low-Level GPU Benchmarks
 - **FP32 Matrix Multiplication**: 0.0177 seconds/op

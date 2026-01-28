@@ -1,5 +1,7 @@
 # Development Context: Reinforcement Learning Pipeline
 
+> **NEW**: Use `python new_test/full_benchmark.py` for a complete hardware profile (TFLOPS, PCIe, RL Peak, Transformers).
+
 This document provides the context and instructions required to rerun the performance tests and development pipeline from scratch.
 
 ## 1. Environment Setup
