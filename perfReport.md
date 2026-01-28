@@ -33,7 +33,7 @@
 
 ---
 
-# Instance Performance Appendix: RTX 5060 Ti
+# Instance Performance Appendix: RTX 5060 Ti (Machine ID: 39053 VN)
 
 ## Instance Information
 - **GPU**: 1x RTX 5060 Ti (Max CUDA 12.8, 22.8 TFLOPS, 15.9 GB VRAM)
@@ -78,7 +78,7 @@
 ---
 
 # Instance Performance: RTX 5080
-US machine very slow
+US machine very slow, and rent 2 instance on same machine.
 ## Instance Information
 - **GPU**: 1x NVIDIA GeForce RTX 5080 (15.9 GB VRAM, 53.2 TFLOPS)
 - **CPU**: AMD EPYC 7K62 48-Core Processor
@@ -110,3 +110,40 @@ US machine very slow
 - **Bandwidth Bottleneck**: The measured bandwidth (6.93 GB/s) is lower than expected for a PCIe 4.0 x16 slot (which should be ~26+ GB/s), suggesting this instance might be running on a PCIe 4.0 x4 or x8 path, or facing other bus contention.
 - **SPS vs 5090**: Compared to the RTX 5090 (1,012 SPS), the 5080 achieves about 42% of the throughput. This aligns with the lower bandwidth (6.93 vs 14.59 GB/s).
 - **Compute Power**: The FP32/BF16 results are solid, indicating that the GPU itself is healthy, but the RL pipeline's performance is heavily tied to the available PCIe bandwidth.
+
+---
+
+# Instance Performance: RTX 5060 Ti  (Machine ID: 31520 SE)(Current Machine - 2026-01-28)
+
+## Instance Information
+- **GPU**: 1x NVIDIA GeForce RTX 5060 Ti (15.9 GB VRAM, 22.8 TFLOPS)
+- **CPU**: AMD Ryzen Threadripper 2950x 16-Core Processor
+- **RAM**: 16 GB
+- **Bandwidth**: 6.48 GB/s (Host-to-GPU)
+- **Instance ID**: 30661264 | Host: 93447 | Machine ID: 31520
+
+## Low-Level GPU Benchmarks
+- **FP32 Matrix Multiplication**: 0.0654 seconds/op
+- **BF16 Matrix Multiplication**: 0.0239 seconds/op
+- **Host-to-GPU Bandwidth**: 6.48 GB/s
+
+## RL Run Performance (RTX 5060 Ti)
+
+### 1. Quick Dev Pipeline (Single-Agent Smoke Test)
+- **Environment**: `CartPole-v1`
+- **Algorithm**: Simple Actor-Critic (smoke test)
+- **Device**: CUDA
+- **Training Speed**: **297 SPS**
+- **Eval Episode Reward**: **10.0**
+
+### 2. BenchMARL MAPPO (Multi-Agent Benchmark)
+- **Environment**: VMAS `Navigation` (Multi-Robot)
+- **Algorithm**: MAPPO (On-policy)
+- **Device**: CUDA
+- **Iteration Time**: ~14.2s / 6000 frames
+- **Training Speed**: **~421 SPS**
+
+## Observations
+- **Performance Consistency**: The RTX 5060 Ti shows stable performance in matrix operations.
+- **Bandwidth**: The measured bandwidth (6.48 GB/s) is lower than the previous high-bandwidth 5060 Ti run (12.80 GB/s) but significantly better than the failure run (3.32 GB/s).
+- **SPS**: Multi-agent throughput (~421 SPS) is consistent with this hardware class and significantly higher than single-agent CartPole SPS on the same machine.
